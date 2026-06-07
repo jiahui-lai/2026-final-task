@@ -1,0 +1,952 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+/* --- 從這裡開始 --- */
+/* --- 頁首導覽列整體樣式 --- */
+.main-header {
+  width: 100%;
+  background-color: #FDF7F1; /* 暖白底色 */
+  border-bottom: 1px solid #f0e6da;
+  position: relative;
+  z-index: 999; /* 確保導覽列與選單在最上層 */
+}
+
+.header-container {
+  max-width: 1296px;
+  margin: 0 auto;
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+
+/* 右側導覽選單（桌機版預設） */
+.header-nav {
+  display: flex;
+  gap: 32px;
+}
+
+.header-link {
+  font-family: Noto Sans;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 2%;
+  color: #444444;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+
+.header-link:hover {
+  color: #000000;
+}
+
+/* --- 漢堡選單按鈕 --- */
+.hamburger-btn {
+  display: none; /* 桌機版隱藏 */
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20px;
+  height: 14px;
+  padding: 0;
+  z-index: 1001; /* 確保按鈕永遠在選單上方，方便點擊關閉 */
+}
+
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background-color: #333333;
+  transition: transform 0.3s ease, opacity 0.3s ease; /* 增加平滑動畫 */
+  transform-origin: left center;
+}
+
+/* 【動態效果】當漢堡按鈕被點擊（啟動 active 類別）時，三條線化身為 X */
+.hamburger-btn.active span:nth-child(1) {
+  transform: rotate(45deg) translate(1px, -1px);
+}
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0; /* 中間線消失 */
+}
+.hamburger-btn.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(1px, 1px);
+}
+
+/* --- 響應式網頁設計 (RWD) --- */
+@media (max-width: 992px) {
+  .header-container {
+    padding: 8px 12px;
+  }
+
+  .hamburger-btn {
+    display: flex; /* 手機版顯示漢堡鈕 */
+  }
+
+  .header-nav {
+    display: flex;
+    flex-direction: column;     /* 垂直排列 */
+    justify-content: center;    /* 垂直置中 */
+    align-items: center;        /* 水平置中 */
+    gap: 32px;                  /* 項目間的上下間距 */
+    position: absolute;         /* 絕對定位，相對於頁首 */
+    top: 100%;                  /* 剛好接在 header 的正下方 */
+    left: 0;
+    width: 100%;
+    height: auto;               
+    background-color: #FDF7F1;
+    padding: 48px 0;            
+    
+    /* 預設隱藏狀態 */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    
+    border-bottom: 1px solid #f0e6da;
+  }
+
+  /* 當選單被啟動（active 類別）時顯示 */
+  .header-nav.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+}
+
+
+
+/* --- 部落格頁首橫幅區塊整體樣式 --- */
+.hero-banner-section {
+  width: 100%;
+  height: 380px;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
+    url('https://github.com/hexschool/2022-web-layout-training/blob/main/2026-web-camp/blog_banner.png?raw=true');
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; 
+  display: flex;
+  align-items: center;
+}
+
+/* 內部主容器 */
+.banner-container {
+  max-width: 1296px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  display: flex;
+  justify-content: center; 
+  align-items: center;     
+}
+
+/* --- 後方超大裝飾浮水印 --- */
+.banner-watermark {
+  position: absolute;
+  /* 使用 clamp 讓字體在手機到桌機間自動流暢縮放，避免寫死大級數 */
+  font-size: clamp(100px, 16vw, 240px); 
+  font-weight: 900;
+  color: #ffffff;
+  opacity: 0.05; 
+  letter-spacing: 6px;
+  bottom: -0.3em; /* 改用 em 相對單位，會隨字體縮放自動調整下移距離 */
+  left: 50%;
+  /* 關鍵：translateX(-50%) 負責置中，縮放由 clamp 搞定，且確保 max-width 不超出視窗 */
+  transform: translateX(-50%); 
+  max-width: 100%; 
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none; 
+  z-index: 1;
+}
+
+/* --- 前方核心標題內容 --- */
+.banner-content {
+  position: relative;
+  z-index: 2; 
+  text-align: center; 
+  color: #ffffff;    
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* 稍微增加中英文之間的行距 */
+}
+
+.banner-en-title {
+  font-size: 80px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.banner-zh-title {
+  font-size: 48px;
+  font-weight: 500;
+  letter-spacing: 4px; 
+  line-height: 1.2;
+}
+
+/* 響應式網頁設計 (RWD) */
+@media (max-width: 992px) {
+  /* 手機版適度縮小橫幅高度，符合行動裝置螢幕比例 */
+  .hero-banner-section {
+    height: 380px;
+     background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
+    url('https://github.com/hexschool/2022-web-layout-training/blob/main/2026-web-camp/mobile/blog_banner.png?raw=true'); 
+  }
+
+  .banner-container {
+    padding: 0 16px;
+  }
+
+  .banner-en-title {
+    font-size: 40px;
+  }
+
+  .banner-zh-title {
+    font-size: 40px;
+    letter-spacing: 2px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 主容器 */
+.container {
+  max-width: 1296px;
+  margin: 60px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 60px;
+}
+
+/* --- 左側側邊欄 --- */
+.sidebar {
+  position: sticky;
+  top: 40px;
+  height: max-content;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav-item {
+  display: block;
+  padding: 10px 16px;
+  color: #666666;
+  text-decoration: none;
+  text-align: center;
+  font-family: Noto Sans;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+  line-height: 150%;
+  letter-spacing: 2%;
+  transition: all 0.2s ease;
+}
+
+
+/* 作用中狀態：黑底白字 */
+.nav-item.active {
+  background-color: #24140B;
+  color: #ffffff;
+}
+
+.nav-item:hover:not(.active) {
+  background-color: #f5f5f5;
+  color: #24140B;
+}
+
+/* --- 右側內容區 --- */
+.content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.article-list {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* 文章卡片佈局 */
+.article-card {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.article-img-wrapper {
+  width: 100%;
+  aspect-ratio: 1.6 / 1;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+}
+
+.article-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover .article-img {
+  transform: scale(1.03);
+}
+
+/* 文章文字內容 */
+.article-info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.article-tags {
+  font-family: Noto Sans;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 2%;
+  color: #404040;
+}
+
+
+.article-title {
+  font-family: Noto Sans;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 24px;
+  line-height: 150%;
+  letter-spacing: 2%;
+  color: #404040;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.article-title:hover {
+  color: #0056b3;
+}
+
+/* 文章中繼資料 (日期、觀看數) */
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Noto Sans;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  line-height: 150%;
+  letter-spacing: 2%;
+  color: #404040;
+  margin-top: 4px;
+}
+
+
+.meta-stats {
+  display: flex;
+  gap: 16px;
+}
+
+/* --- 分頁導覽 --- */
+.pagination {
+  display: flex;
+  justify-content: flex-end; /* 桌機版靠右 */
+  align-items: center;
+  gap: 24px; /* 增加按鈕之間的間距，符合設計稿的留白 */
+  margin-top: 40px;
+}
+
+.page-btn {
+  background: none;
+  border: none;
+  color: #404040;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* 預留圓形範圍，供 active 狀態使用 */
+  transition: all 0.2s ease;
+}
+
+/* 當前頁碼 */
+.page-btn.active {
+  background-color: #404040;
+  color: #ffffff;
+}
+
+/* 非作用中頁碼的滑鼠懸停效果 */
+.page-btn:hover:not(.active) {
+  color: #404040;
+  background-color: #f5f5f5; /* 輕微的灰色背景提示 */
+}
+
+/* 前後箭頭按鈕的特殊顏色（較淡） */
+.prev-btn, .next-btn {
+  color: #666666;
+  font-weight: 300; /* 讓箭頭看起來更細緻 */
+}
+
+/* 省略號的樣式 */
+.page-dots {
+  color: #333333;
+  font-size: 16px;
+  letter-spacing: 1px;
+}
+
+/* --- 響應式網頁設計 (RWD) --- */
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin: 20px auto;
+    padding: 0 16px;
+  }
+
+  .sidebar {
+    position: static;
+    width: 100%;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;     
+    gap: 12px 10px; 
+  }
+
+  .nav-item {
+    flex-shrink: 1;      
+    display: inline-block;
+    padding: 10px 14px;  
+    font-size: 16px;     
+  }
+  
+  /* 作用中狀態：維持滿版黑底白字 */
+  .nav-item.active {
+    background-color: #24140B;
+    color: #ffffff;
+  }
+
+  .nav-item:hover:not(.active) {
+    background-color: #f5f5f5; /* 手機版加上輕微輕觸反饋 */
+    color: #000000;
+  }
+
+  .article-card {
+    grid-template-columns: 260px 1fr;
+    gap: 24px;
+  }
+
+  .article-tags {
+  font-size: 14px;
+}
+
+  .article-title {
+    font-size: 20px;
+  }
+
+  .article-meta {
+  font-size: 13px;
+}
+
+.pagination {
+    justify-content: center;
+    gap: 16px;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .article-card {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .article-meta {
+    flex-direction: row;       
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    font-size: 12px;            
+    gap: 8px;
+  }
+
+  .meta-stats {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;                 
+  }
+}
+
+
+
+/* 電子報訂閱區塊 */
+.subscription-section {
+  width: 100%;
+  height: 440px; /* 桌機版固定高度 */
+  
+  /* 桌機版：滿版背景圖 + 疊加半透明深色遮罩層 */
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    url('https://github.com/hexschool/2022-web-layout-training/blob/main/2026-web-camp/subscription_bg.png?raw=true');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center; 
+}
+
+/* 內部主容器 */
+.subscription-container {
+  max-width: 1296px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 左右對半平分 */
+  gap: 48px; 
+  align-items: center; 
+}
+
+.sub-image-box {
+  width: 100%;
+  height: 440px; 
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.sub-img {
+  width: 100%;
+  max-width: 480px; 
+  height: 100%; 
+  object-fit: cover; 
+  display: block;
+}
+
+.sub-content-box {
+  color: #ffffff; 
+  display: flex;
+  flex-direction: column;
+  /*gap: 16px; */
+}
+
+.sub-subtitle {
+  font-family: Noto Sans;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 2%;
+  opacity: 0.9;
+}
+
+.sub-title {
+  font-family: Noto Sans;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 80px;
+  line-height: 120%;
+  letter-spacing: 2%;
+  margin-bottom: 24px;
+}
+
+
+.sub-desc {
+  font-family: Noto Sans;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 2%;
+  opacity: 0.95; 
+  max-width: 540px; 
+}
+
+
+/* 膠囊型輸入框表單（桌機版並排） */
+.sub-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 540px; 
+  border: 1px solid #ffffff; 
+  border-radius: 50px; 
+  padding: 6px 6px 6px 24px; 
+  background-color: transparent;
+  margin-top: 24px;
+}
+
+.sub-input {
+  flex: 1; 
+  background: none;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 10px 0;
+}
+
+.sub-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.sub-submit-btn {
+  background-color: #ffffff; 
+  color: #333333;
+  border: none;
+  outline: none;
+  border-radius: 50px; 
+  padding: 10px 32px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0; 
+}
+
+/* 響應式網頁設計 */
+@media (max-width: 992px) {
+  
+  .subscription-section {
+    height: auto;
+    background-image: none;
+    display: block;
+  }
+
+  .subscription-container {
+    grid-template-columns: 1fr; 
+    gap: 0; 
+    padding: 0;
+  }
+
+  .sub-image-box {
+    width: 100%;
+    height: auto;
+    padding: 0; 
+    margin: 0;
+    display: block; 
+    background: none;
+  }
+
+  .sub-img {
+    width: 100%;
+    max-width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .sub-content-box {
+    width: 100%;
+    padding: 40px 16px; 
+    align-items: flex-start; 
+    text-align: left;
+    
+    /* 手機版真正的深色背景包覆區 */
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+      url('https://github.com/hexschool/2022-web-layout-training/blob/main/2026-web-camp/mobile/subscription_bg.png?raw=true');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .sub-subtitle {
+  font-size: 14px;
+}
+
+  .sub-title {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .sub-desc{
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+  .sub-form {
+    max-width: 100%;
+    padding: 4px 4px 4px 16px; 
+    margin-top: 8px;
+  }
+
+  .sub-input {
+    font-size: 14px;
+  }
+
+  .sub-submit-btn {
+    padding: 8px 24px; 
+    font-size: 14px;
+  }
+}
+
+
+
+
+/* 聯絡我們區塊 */
+.contact-section {
+  width: 100%;
+  background-color: #24140B; 
+  padding: 80px 0;
+}
+
+.contact-container {
+  max-width: 1296px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; 
+  gap: 64px; 
+  align-items: flex-start;
+}
+
+.contact-info {
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-subtitle {
+  font-family: Noto Sans;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 2%;
+  opacity: 0.85;
+}
+
+
+.info-title {
+  font-family: Noto Sans;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 80px;
+  line-height: 120%;
+  letter-spacing: 2%;
+  margin-bottom: 24px;
+}
+
+
+.info-desc {
+  font-family: Noto Sans;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 2%;
+  opacity: 0.9;
+  margin-bottom: 48px;
+}
+
+/* 社群與信箱通用基礎樣式 */
+.social-links {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.social-icon {
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  color: #ffffff;
+}
+
+.social-icon:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
+}
+
+.contact-email {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: #ffffff;
+}
+
+.email-link {
+  color: #ffffff;
+  text-decoration: none;
+  font-family: Noto Sans;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 2%;
+  opacity: 0.9;
+}
+
+
+/* 桌機與手機區塊的預設控制 */
+.mobile-footer-info {
+  display: none;
+}
+
+/* --- 右側表單欄樣式 --- */
+.contact-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px; 
+}
+
+.form-row {
+  display: flex;
+  gap: 24px; 
+  width: 100%;
+}
+
+.form-row .form-group {
+  flex: 1; 
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5); 
+  border-radius: 40px; 
+  padding: 12px 20px;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+}
+
+.form-textarea {
+  resize: none; 
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-submit-btn {
+  width: 100%;
+  background-color: #ffffff; 
+  color: #404040;
+  border: none;
+  outline: none;
+  border-radius: 50px; 
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 響應式網頁設計 */
+@media (max-width: 992px) {
+  .contact-section {
+    padding: 60px 0;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 0 16px; 
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 24px;
+    align-items: flex-start;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 20px; 
+  }
+}
